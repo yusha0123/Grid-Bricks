@@ -126,7 +126,7 @@ export function ForecastChart({ data }: { data: ForecastResponse }) {
   return (
     <div className="chart">
       <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={points} margin={{ top: 8, right: 12, bottom: 26, left: 0 }}>
+        <LineChart data={points} margin={{ top: 28, right: 12, bottom: 26, left: 0 }}>
           <CartesianGrid stroke="#eef2f7" vertical={false} />
           <XAxis
             dataKey="label"
@@ -144,7 +144,7 @@ export function ForecastChart({ data }: { data: ForecastResponse }) {
           <Line
             type="monotone"
             dataKey="forecast"
-            name="Forecast (MW)"
+            name="Forecast"
             stroke={FORECAST_COLOR}
             strokeWidth={2}
             dot={false}
@@ -161,7 +161,7 @@ export function ForecastActualChart({ data }: { data: AccuracyResponse }) {
   return (
     <div className="chart">
       <ResponsiveContainer width="100%" height={320}>
-        <LineChart data={points} margin={{ top: 8, right: 12, bottom: 26, left: 0 }}>
+        <LineChart data={points} margin={{ top: 28, right: 12, bottom: 26, left: 0 }}>
           <CartesianGrid stroke="#eef2f7" vertical={false} />
           <XAxis
             dataKey="label"
@@ -176,11 +176,11 @@ export function ForecastActualChart({ data }: { data: AccuracyResponse }) {
             label={{ value: "MW", position: "insideTopLeft", fontSize: 11, fill: "#94a3b8" }}
           />
           <Tooltip content={<AccuracyTooltip />} />
-          <Legend wrapperStyle={{ fontSize: 12 }} />
+          <Legend verticalAlign="top" align="right" wrapperStyle={{ fontSize: 12, marginBottom: 8 }} />
           <Line
             type="monotone"
             dataKey="forecast"
-            name="Forecast (MW)"
+            name="Forecast"
             stroke={FORECAST_COLOR}
             strokeWidth={2}
             dot={false}
@@ -188,7 +188,7 @@ export function ForecastActualChart({ data }: { data: AccuracyResponse }) {
           <Line
             type="monotone"
             dataKey="actual"
-            name="Actual (MW)"
+            name="Actual"
             stroke={ACTUAL_COLOR}
             strokeWidth={2}
             dot={false}
@@ -240,3 +240,4 @@ export function ForecastErrorChart({ data }: { data: AccuracyResponse }) {
     </div>
   );
 }
+
