@@ -168,7 +168,43 @@ tie-breaks, timezones, empty), accuracy (MAE/RMSE/MAPE, zero-actual MAPE,
 timestamp matching, empty set), and API contracts (health, validation,
 endpoint shapes with a mocked client).
 
+## Deployment (containerized)
+
+Dockerfiles are provided for both apps, plus a compose file for local
+containerized runs:
+
+```powershell
+docker compose up --build
+```
+
+- Backend: `http://localhost:8000` (uvicorn on `$PORT`)
+- Frontend: `http://localhost:3000` (static build served by `serve`)
+
+### Vercel
+
+`vercel.json` registers both Dockerfiles via `@vercel/docker` and routes
+`/api/*` to the backend container and everything else to the frontend
+container. Set `VITE_API_BASE_URL` to your deployed backend URL at build
+time and `ALLOWED_ORIGINS` to your frontend origin.
+
+Note: Vercel's Docker builder runs containers as serverless functions with
+cold starts and execution-time limits, and `@vercel/docker` is experimental.
+For a simpler Vercel deployment, build the frontend as a static site and
+deploy the backend as a Python serverless function; the Dockerfiles remain
+useful for Render / Fly.io / Railway / local compose.
+
 ## Known limitations
+
+- Elexon has no bulk-download here: each delivery day triggers a few
+  date-filtered API calls (cached 10 min in memory). First load of a new
+  date takes a few seconds.
+- `WINDFOR` is hourly while actuals are half-hourly (see granularity note);
+  the app matches exactly and reports coverage instead of interpolating.
+- Production `dist/` bundle is ~650 kB (Recharts); acceptable for an
+  internal dashboard, code-splitting not yet applied.
+- Docker images were not built in this environment (Docker daemon not
+  running at verification time); Dockerfiles follow standard, tested patterns.
+
 
 - Elexon has no bulk-download here: each delivery day triggers a few
   date-filtered API calls (cached 10 min in memory). First load of a new

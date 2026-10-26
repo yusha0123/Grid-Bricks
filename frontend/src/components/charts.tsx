@@ -126,13 +126,13 @@ export function ForecastChart({ data }: { data: ForecastResponse }) {
   return (
     <div className="chart">
       <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={points} margin={{ top: 8, right: 12, bottom: 0, left: 0 }}>
+        <LineChart data={points} margin={{ top: 8, right: 12, bottom: 26, left: 0 }}>
           <CartesianGrid stroke="#eef2f7" vertical={false} />
           <XAxis
             dataKey="label"
             {...axisProps()}
             interval={3}
-            label={{ value: "Delivery time (UTC)", position: "insideBottomRight", offset: -2, fontSize: 11, fill: "#94a3b8" }}
+            label={{ value: "Delivery time (UTC)", position: "bottom", offset: 4, fontSize: 11, fill: "#94a3b8" }}
           />
           <YAxis
             {...axisProps()}
@@ -161,13 +161,13 @@ export function ForecastActualChart({ data }: { data: AccuracyResponse }) {
   return (
     <div className="chart">
       <ResponsiveContainer width="100%" height={320}>
-        <LineChart data={points} margin={{ top: 8, right: 12, bottom: 0, left: 0 }}>
+        <LineChart data={points} margin={{ top: 8, right: 12, bottom: 26, left: 0 }}>
           <CartesianGrid stroke="#eef2f7" vertical={false} />
           <XAxis
             dataKey="label"
             {...axisProps()}
             interval={3}
-            label={{ value: "Delivery time (UTC)", position: "insideBottomRight", offset: -2, fontSize: 11, fill: "#94a3b8" }}
+            label={{ value: "Delivery time (UTC)", position: "bottom", offset: 4, fontSize: 11, fill: "#94a3b8" }}
           />
           <YAxis
             {...axisProps()}
@@ -204,13 +204,13 @@ export function ForecastErrorChart({ data }: { data: AccuracyResponse }) {
   return (
     <div className="chart">
       <ResponsiveContainer width="100%" height={260}>
-        <ComposedChart data={points} margin={{ top: 8, right: 12, bottom: 0, left: 0 }}>
+        <ComposedChart data={points} margin={{ top: 8, right: 12, bottom: 26, left: 0 }}>
           <CartesianGrid stroke="#eef2f7" vertical={false} />
           <XAxis
             dataKey="label"
             {...axisProps()}
             interval={3}
-            label={{ value: "Delivery time (UTC)", position: "insideBottomRight", offset: -2, fontSize: 11, fill: "#94a3b8" }}
+            label={{ value: "Delivery time (UTC)", position: "bottom", offset: 4, fontSize: 11, fill: "#94a3b8" }}
           />
           <YAxis
             {...axisProps()}
