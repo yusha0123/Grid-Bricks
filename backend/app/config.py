@@ -45,10 +45,10 @@ class Settings:
     # Simple in-memory cache for successful Elexon responses.
     cache_ttl_seconds: int = int(_getenv("CACHE_TTL_SECONDS", "600"))
 
-    # CORS: local frontend origins only (no wildcard).
+    # CORS: allow requests from any origin by default.
     allowed_origins: tuple = (
         tuple(o.strip() for o in _getenv("ALLOWED_ORIGINS", "").split(",") if o.strip())
-        or ("http://localhost:5173", "http://127.0.0.1:5173")
+        or ("*",)
     )
 
 
